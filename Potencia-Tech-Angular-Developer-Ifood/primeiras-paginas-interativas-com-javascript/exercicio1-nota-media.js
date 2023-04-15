@@ -8,16 +8,16 @@
 // - Média entre 5 e 7, recuperação;
 // - Média acima de 7, passou de semestre;
 
-const nota1 = 10;
-const nota2 = 5;
-const nota3 = 10;
+const nota1 = 7;
+const nota2 = 7;
+const nota3 = 7;
 const notaMedia = (nota1 + nota2 + nota3) / 3;
 
 
 if (notaMedia < 5) {
   console.log("Reprovado");
   
-} else if (notaMedia >= 5 && notaMedia < 7) {
+} else if (notaMedia >= 5 && notaMedia <= 7) {
   console.log('Recuperação');
 } else {
   console.log('Aprovado');
