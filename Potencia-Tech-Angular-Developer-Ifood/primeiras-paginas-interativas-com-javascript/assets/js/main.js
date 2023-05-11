@@ -1,16 +1,20 @@
+function convertPokemonTypesToLi(pokemontypes) {
+	return pokemontypes.map((typeSlot) => `<li class="pokemon-type">${typeSlot.type.name}</li>`)
+}
+
 function convertPokemonToLi(pokemon) {
   return `
 	<li class="pokemon">
-	<span class="pokemon-number">#001</span>
+	<span class="pokemon-number">#${pokemon.order}</span>
 	<span class="pokemon-name">${pokemon.name}</span>
 
 	<div class="pokemon-detail">
 		<ol class="pokemon-types">
-			<li class="pokemon-type">grass</li>
-			<li class="pokemon-type">poison</li>
+			${convertPokemonTypesToLi(pokemon.types).join('')}
+
 		</ol>
 
-		<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
+		<img src="${pokemon.sprites.other.dream_world.front_default}"
 			alt="${pokemon.name}">
 	</div>
 	</li>
@@ -18,6 +22,7 @@ function convertPokemonToLi(pokemon) {
 }
 const pokemonOlList = document.getElementById('pokemons-list');
 
-pokeApi.getPokemons().then((pokemonList = []) => {
-	pokemonOlList.innerHTML += pokemonList.map(convertPokemonToLi).join('');
+pokeApi.getPokemons().then((pokemons = []) => {
+	const newHtml = pokemons.map(convertPokemonToLi).join('');
+	pokemonOlList.innerHTML += newHtml
 })
